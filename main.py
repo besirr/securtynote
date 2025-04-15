@@ -4,7 +4,6 @@ from PIL import Image, ImageTk
 import base64
 
 
-# Şifreleme Fonksiyonu (basit base64 + anahtar)
 def sifrele(metin, key):
     try:
         metin = metin.encode("utf-8")
@@ -15,7 +14,6 @@ def sifrele(metin, key):
         return str(e)
 
 
-# Şifre Çözme Fonksiyonu
 def coz(metin, key):
     try:
         decoded = base64.b64decode(metin).decode("utf-8")
@@ -27,8 +25,7 @@ def coz(metin, key):
         return "Çözümleme başarısız!"
 
 
-# Kaydet Butonu
-def kaydet():
+def kaydet():s
     baslik = my_baslik_entry.get()
     icerik = my_password_entry.get("1.0", tkinter.END).strip()
     sifre = my_key_entry.get()
@@ -50,7 +47,6 @@ def kaydet():
     messagebox.showinfo("Başarılı", "Not kaydedildi (şifrelenmiş olarak).")
 
 
-# Göster Butonu
 def goster():
     metin = my_password_entry.get("1.0", tkinter.END).strip()
     sifre = my_key_entry.get()
@@ -64,34 +60,29 @@ def goster():
     my_password_entry.insert(tkinter.END, sonuc)
 
 
-# GUI
+
 window = tkinter.Tk()
 window.title("Gizli Not Uygulaması")
 window.minsize(450, 650)
 
-# Resim
 img = Image.open("securty.webp")
 img = img.resize((200, 200))
 photo = ImageTk.PhotoImage(img)
 label = tkinter.Label(window, image=photo)
 label.pack()
 
-# Başlık
 tkinter.Label(text="Şifre adı nedir", font=('arial', 10, "normal")).pack()
 my_baslik_entry = tkinter.Entry(width=25)
 my_baslik_entry.pack()
 
-# Not (şifreli veri)
 tkinter.Label(text="Notunuz", font=('arial', 10, "normal")).pack()
 my_password_entry = tkinter.Text(width=35, height=10)
 my_password_entry.pack()
 
-# Şifre Girişi
 tkinter.Label(text="Anahtar", font=('arial', 10, "normal")).pack()
 my_key_entry = tkinter.Entry(width=25, show="*")
 my_key_entry.pack()
 
-# Butonlar
 tkinter.Button(text="Kaydet", command=kaydet).pack(pady=5)
 tkinter.Button(text="Göster", command=goster).pack()
 
